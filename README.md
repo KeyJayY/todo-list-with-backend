@@ -2,5 +2,6 @@
 ## general info
 website todo list application with data storing in local database
 ## technologies
-express js
-mongodb (mongoose)
+technologies I use in this project:
+- express js
+- mongodb (mongoose)
