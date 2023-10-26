@@ -12,14 +12,14 @@
 				<h1>TODO LIST</h1>
 			</header>
 			<form action="/add" method="post">
-				<input type="text" name="dsc" id="" />
+				<input type="text" name="dsc" required />
 				<button class="add-button">+</button>
 			</form>
 			<% for(let i of data) { %>
-			<div class="list-item">
-				<input type="checkbox" />
+			<div class="list-item" data-id="<%=i._id%>">
+				<input type="checkbox" <% if(i.status) { %> checked <% } %> />
 				<p class="task-name"><%=i.description%></p>
-				<button class="remove-button" data-id="<%=i._id%>">remove</button>
+				<button class="remove-button">remove</button>
 			</div>
 			<% } %>
 		</div>

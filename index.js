@@ -12,6 +12,7 @@ mongoose.connect("mongodb://127.0.0.1:27017/todolist");
 
 const taskSchema = new mongoose.Schema({
 	description: String,
+	status: Boolean,
 });
 
 const Task = mongoose.model("Task", taskSchema);
@@ -23,13 +24,21 @@ app.get("/", async (req, res) => {
 });
 
 app.post("/add", async (req, res) => {
-	let task = new Task({ description: req.body.dsc });
+	const task = new Task({ description: req.body.dsc, status: false });
 	await task.save();
 	res.redirect("/");
 });
 
 app.delete("/remove/:id", async (req, res) => {
 	await Task.deleteOne({ _id: req.params.id });
+	res.end();
+});
+
+app.patch("/updateStatus/:id", async (req, res) => {
+	const currentStatus = await Task.findOne({ _id: req.params.id });
+	await Task.findByIdAndUpdate(req.params.id, {
+		status: !currentStatus.status,
+	});
 	res.end();
 });
 
