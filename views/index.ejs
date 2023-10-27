@@ -15,13 +15,16 @@
 				<input type="text" name="dsc" required />
 				<button class="add-button">+</button>
 			</form>
+			<ul>
 			<% for(let i of data) { %>
-			<div class="list-item" data-id="<%=i._id%>">
-				<input type="checkbox" <% if(i.status) { %> checked <% } %> />
-				<p class="task-name"><%=i.description%></p>
-				<button class="remove-button">remove</button>
-			</div>
+				<li class="list-item" data-id="<%=i._id%>">
+					<input type="checkbox" <% if(i.status) { %> checked <% } %> />
+					<p class="task-name"><%=i.description%></p>
+					<button class="edit-button">edit</button>
+					<button class="remove-button">del</button>
+				</li>
 			<% } %>
+			</ul>
 		</div>
 		<script src="/js/script.js"></script>
 	</body>

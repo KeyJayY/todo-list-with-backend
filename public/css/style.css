@@ -44,12 +44,24 @@ h1 {
 	padding: 0 0.75em;
 	font-size: 1.5rem;
 }
-.remove-button {
+.remove-button,
+.edit-button,
+#accept-button,
+#cancel-button {
 	border-radius: 3em;
 	height: 45%;
-	width: 20%;
-	background-color: red;
+	width: 12.5%;
 	margin: 0;
+}
+.remove-button,
+#cancel-button {
+	background-color: red;
+}
+.edit-button {
+	background-color: blue;
+}
+#accept-button {
+	background-color: limegreen;
 }
 .add-button {
 	background-color: limegreen;
@@ -67,7 +79,7 @@ h1 {
 	text-align: left;
 	padding: 0 0.2em;
 	max-height: 100%;
-	width: 75%;
+	width: 70%;
 	overflow: hidden;
 	text-overflow: ellipsis;
 }
@@ -113,6 +125,10 @@ input[type="checkbox"]:checked::before {
 input:checked + p {
 	text-decoration: line-through;
 	color: rgba(50, 50, 50, 0.75);
+}
+ul {
+	list-style-type: none;
+	padding: 0;
 }
 
 @media (max-width: 500px) {
