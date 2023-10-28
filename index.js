@@ -42,4 +42,11 @@ app.patch("/updateStatus/:id", async (req, res) => {
 	res.end();
 });
 
+app.patch("/updateTask/:id", async (req, res) => {
+	await Task.findByIdAndUpdate(req.params.id, {
+		description: req.body.description,
+	});
+	res.end();
+});
+
 app.listen(port, () => console.log(`server is running on port: ${port}`));
