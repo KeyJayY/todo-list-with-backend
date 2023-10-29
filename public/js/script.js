@@ -17,8 +17,11 @@ list.addEventListener("click", (e) => {
 });
 
 const changeDoneStatus = async (e) =>
-	fetch(`/updateStatus/${e.target.parentNode.getAttribute("data-id")}`, {
+	fetch(document.URL + "/updateStatus", {
 		method: "PATCH",
+		headers: {
+			id: e.target.parentNode.getAttribute("data-id"),
+		},
 	})
 		.then((res) => {
 			if (!res.ok) console.log("failed to connect to api ");
@@ -28,8 +31,9 @@ const changeDoneStatus = async (e) =>
 		});
 
 const removeTask = (target) =>
-	fetch(`/remove/${target.parentNode.getAttribute("data-id")}`, {
+	fetch(document.URL + "/remove", {
 		method: "DELETE",
+		headers: { id: target.parentNode.getAttribute("data-id") },
 	}).then((response) => {
 		if (response.ok) target.parentNode.remove();
 	});
@@ -43,11 +47,12 @@ function updateTask(target) {
 }
 
 const sendUpdateToBackend = (data) => {
-	fetch(`/updateTask/${currentTask.getAttribute("data-id")}`, {
+	fetch(document.URL + "/updateTask", {
 		method: "PATCH",
 		headers: {
 			Accept: "application/json",
 			"Content-Type": "application/json",
+			id: currentTask.getAttribute("data-id"),
 		},
 		body: JSON.stringify(data),
 	});

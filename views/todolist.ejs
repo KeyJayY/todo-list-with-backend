@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>todo list <%=collection%></title>
+		<link rel="stylesheet" href="/css/style.css" />
+	</head>
+	<body>
+		<div id="container">
+			<header>
+				<h1>TODO LIST</h1>
+				<p><%=collection%></p>
+			</header>
+			<form action="/<%=collection%>/add" method="post">
+				<input type="text" name="dsc" required placeholder="task description"/>
+				<button class="add-button">+</button>
+			</form>
+			<ul>
+			<% for(let i of data) { %>
+				<li class="list-item" data-id="<%=i._id%>">
+					<input type="checkbox" <% if(i.status) { %> checked <% } %> />
+					<p class="task-name"><%=i.description%></p>
+					<button class="edit-button">edit</button>
+					<button class="remove-button">del</button>
+				</li>
+			<% } %>
+			</ul>
+		</div>
+		<script src="/js/script.js"></script>
+	</body>
+</html>

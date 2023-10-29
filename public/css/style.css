@@ -29,9 +29,17 @@ body {
 }
 h1 {
 	text-align: center;
-	border-bottom: dotted black 3px;
+	font-size: 2rem;
 	padding: 0;
 	margin: 0;
+}
+header {
+	border-bottom: dotted black 3px;
+}
+header p {
+	text-align: center;
+	font-size: 1.5rem;
+	margin: 0.25em;
 }
 .list-item {
 	display: flex;
@@ -129,6 +137,7 @@ input:checked + p {
 ul {
 	list-style-type: none;
 	padding: 0;
+	margin: 0;
 }
 
 @media (max-width: 500px) {

@@ -1,3 +1,4 @@
+const { render } = require("ejs");
 const express = require("express");
 const mongoose = require("mongoose");
 
@@ -15,35 +16,41 @@ const taskSchema = new mongoose.Schema({
 	status: Boolean,
 });
 
-const Task = mongoose.model("Task", taskSchema);
-
-// sendFile will go here
 app.get("/", async (req, res) => {
-	let data = await Task.find();
-	res.render("index.ejs", { data: data });
+	res.render("index.ejs");
 });
 
-app.post("/add", async (req, res) => {
+app.get("/:collection", async (req, res) => {
+	const Task = mongoose.model("Task" + req.params.collection, taskSchema);
+	let data = await Task.find();
+	res.render("todolist.ejs", { data: data, collection: req.params.collection });
+});
+
+app.post("/:collection/add", async (req, res) => {
+	const Task = mongoose.model("Task" + req.params.collection, taskSchema);
 	const task = new Task({ description: req.body.dsc, status: false });
 	await task.save();
-	res.redirect("/");
+	res.redirect("/" + req.params.collection);
 });
 
-app.delete("/remove/:id", async (req, res) => {
-	await Task.deleteOne({ _id: req.params.id });
+app.delete("/:collection/remove", async (req, res) => {
+	const Task = mongoose.model("Task" + req.params.collection, taskSchema);
+	await Task.deleteOne({ _id: req.headers.id });
 	res.end();
 });
 
-app.patch("/updateStatus/:id", async (req, res) => {
-	const currentStatus = await Task.findOne({ _id: req.params.id });
-	await Task.findByIdAndUpdate(req.params.id, {
+app.patch("/:collection/updateStatus", async (req, res) => {
+	const Task = mongoose.model("Task" + req.params.collection, taskSchema);
+	const currentStatus = await Task.findOne({ _id: req.headers.id });
+	await Task.findByIdAndUpdate(req.headers.id, {
 		status: !currentStatus.status,
 	});
 	res.end();
 });
 
-app.patch("/updateTask/:id", async (req, res) => {
-	await Task.findByIdAndUpdate(req.params.id, {
+app.patch("/:collection/updateTask", async (req, res) => {
+	const Task = mongoose.model("Task" + req.params.collection, taskSchema);
+	await Task.findByIdAndUpdate(req.headers.id, {
 		description: req.body.description,
 	});
 	res.end();
