@@ -82,12 +82,8 @@ a {
 	color: black;
 	font-size: 2rem;
 	height: 100%;
-}
-@supports not (aspect-ratio: 1/1) {
-	.add-button {
-		width: 10%;
-		border-radius: 10%;
-	}
+	padding: 0;
+	text-align: center;
 }
 .task-name {
 	max-height: 100%;
