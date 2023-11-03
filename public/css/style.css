@@ -60,6 +60,7 @@ a {
 #accept-button,
 #cancel-button {
 	border-radius: 3em;
+	color: black;
 	height: 45%;
 	margin: 0;
 	width: 12.5%;
@@ -81,7 +82,9 @@ a {
 	color: black;
 	font-size: 2rem;
 	height: 100%;
-	@supports not (aspect-ratio: 1/1) {
+}
+@supports not (aspect-ratio: 1/1) {
+	.add-button {
 		width: 10%;
 		border-radius: 10%;
 	}
