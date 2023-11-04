@@ -15,8 +15,21 @@ const taskSchema = new mongoose.Schema({
 	status: Boolean,
 });
 
+const todoListSchema = new mongoose.Schema({
+	name: String,
+});
+
 app.get("/", async (req, res) => {
 	res.render("index.ejs");
+});
+
+app.get("/favicon.ico", async (req, res) => {});
+
+app.get("/getTodoListsNames", async (req, res) => {
+	const TodoList = mongoose.model("Todolist", todoListSchema);
+	const todoLists = [];
+	(await TodoList.find()).forEach((elem) => todoLists.push(elem.name));
+	res.json({ data: todoLists });
 });
 
 app.get("/:collection", async (req, res) => {
@@ -52,6 +65,15 @@ app.patch("/:collection/updateTask", async (req, res) => {
 	await Task.findByIdAndUpdate(req.headers.id, {
 		description: req.body.description,
 	});
+	res.end();
+});
+
+app.post("/addTodoList", async (req, res) => {
+	const TodoList = mongoose.model("Todolist", todoListSchema);
+	if (!(await TodoList.findOne({ name: req.body.name }))) {
+		const todolist = new TodoList({ name: req.body.name });
+		todolist.save();
+	}
 	res.end();
 });
 

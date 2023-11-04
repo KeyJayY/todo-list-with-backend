@@ -23,23 +23,68 @@ h1 {
 button {
 	background-color: limegreen;
 	border-radius: 0.5em;
+	border: none;
 	height: 100%;
 	margin-left: 0.5em;
+	position: absolute;
+	right: 0;
+	top: 0;
 	width: 10%;
 }
 input {
+	border: none;
+	border-radius: 0.5em;
+	font-size: 1.1rem;
+	padding: 0.7em;
+	height: 100%;
+	width: 100%;
+}
+ul {
+	display: block;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+li {
+	padding: 0.8em;
+}
+li:hover {
+	background-color: rgba(200, 200, 200, 0.5);
+}
+a {
+	color: black;
+	text-decoration: none;
+}
+#search-bar {
 	border-radius: 0.5em;
 	height: 100%;
-	width: 80%;
+	width: 90%;
 }
 #search {
-	align-items: center;
-	display: flex;
-	height: 2rem;
-	justify-content: center;
-	width: 80%;
+	position: relative;
+	width: 60vw;
+	height: 3em;
 }
-
+#suggestions {
+	background-color: white;
+	display: none;
+	margin: 0;
+	max-height: 60vh;
+	overflow-y: auto;
+	border-bottom-left-radius: 0.5em;
+	border-bottom-right-radius: 0.5em;
+}
+input:focus + #suggestions {
+	display: block;
+}
+#suggestions:hover {
+	display: block;
+}
+input:focus {
+	outline: none;
+	border-bottom-left-radius: 0;
+	border-bottom-right-radius: 0;
+}
 @media (max-width: 500px) {
 	#search {
 		margin: 0;
