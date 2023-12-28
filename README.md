@@ -1,5 +1,5 @@
 # todo-list-with-backend
-http://34.116.209.141/
+http://todolist.keyjay.pl/
 ## general info
 website todo list application with data storing in local database
 ## technologies
