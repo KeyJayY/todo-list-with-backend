@@ -1,5 +1,5 @@
 # todo-list-with-backend
-http://todolist.keyjay.pl/
+https://todolist.keyjay.pl/
 ## general info
 website todo list application with data storing in local database
 ## technologies
